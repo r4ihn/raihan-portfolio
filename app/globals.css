@@ -1,11 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --maroon: #800020;
-  --maroon-light: #a00028;
-  --maroon-dark: #600018;
+  --background: #050505;
+  --foreground: #f9fafb;
 }
 
 @theme inline {
@@ -20,10 +17,56 @@ html {
 }
 
 body {
-  background: var(--background);
+  background:
+    repeating-linear-gradient(
+      0deg,
+      #050505 0px,
+      #050505 8px,
+      #080808 8px,
+      #080808 16px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      #050505 0px,
+      #050505 8px,
+      #080808 8px,
+      #080808 16px
+    );
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
   overflow-x: hidden;
+}
+
+/* 8-bit style helpers */
+.pixel-card {
+  border-width: 4px;
+  border-style: solid;
+  border-color: #ffffff;
+  box-shadow: 4px 4px 0 #ffffff;
+  border-radius: 0;
+  background-color: #000000;
+}
+
+.pixel-button {
+  border-width: 3px;
+  border-style: solid;
+  border-color: #ffffff;
+  box-shadow: 3px 3px 0 #ffffff;
+  border-radius: 0;
+  background-color: #000000;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.pixel-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 #ffffff;
+}
+
+.pixel-image {
+  image-rendering: pixelated;
 }
 
 /* Custom scrollbar */
@@ -32,30 +75,13 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: #050505;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #800020;
-  border-radius: 5px;
+  background: #f9fafb;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a00028;
-}
-
-/* Smooth fade-in animation */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
+  background: #e5e7eb;
 }
