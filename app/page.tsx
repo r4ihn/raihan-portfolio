@@ -65,11 +65,12 @@ export default function Home() {
               Hi, I&apos;m Raihan
             </h1>
             <p className="mb-4 text-2xl font-light text-zinc-300 md:text-3xl">
-              Full Stack Developer
+              Embedded Systems & Electronics Engineer
             </p>
             <p className="mx-auto mb-12 max-w-2xl text-lg text-zinc-400">
-              Crafting digital experiences with cutting-edge technology and innovative design.
-              Transforming ideas into reality through code.
+              Designing and developing embedded systems, creating custom PCBs, and bringing hardware
+              projects to life. Bridging the gap between software and hardware with precision and
+              innovation.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
@@ -97,17 +98,17 @@ export default function Home() {
               <div className="rounded-2xl border border-[#800020]/20 bg-black/40 p-8 backdrop-blur-sm transition-all hover:border-[#800020]/40 hover:shadow-[0_0_40px_rgba(128,0,32,0.2)]">
                 <h3 className="mb-4 text-2xl font-semibold text-white">Who I Am</h3>
                 <p className="leading-relaxed text-zinc-300">
-                  A passionate developer with a love for creating elegant solutions to complex
-                  problems. I specialize in building modern web applications that are both
-                  functional and beautiful.
+                  A passionate embedded systems engineer and electronics enthusiast with expertise in
+                  C and Python programming. I specialize in designing custom PCBs, developing
+                  embedded firmware, and bringing hardware projects from concept to reality.
                 </p>
               </div>
               <div className="rounded-2xl border border-[#800020]/20 bg-black/40 p-8 backdrop-blur-sm transition-all hover:border-[#800020]/40 hover:shadow-[0_0_40px_rgba(128,0,32,0.2)]">
                 <h3 className="mb-4 text-2xl font-semibold text-white">What I Do</h3>
                 <p className="leading-relaxed text-zinc-300">
-                  I develop full-stack applications using the latest technologies, focusing on
-                  performance, accessibility, and user experience. Every project is an opportunity
-                  to learn and grow.
+                  I design and develop embedded systems, create custom printed circuit boards, and
+                  handle electronics prototyping. From soldering components to writing low-level
+                  firmware, I work across the entire hardware development lifecycle.
                 </p>
               </div>
             </div>
@@ -120,12 +121,12 @@ export default function Home() {
             <h2 className="mb-16 text-center text-5xl font-bold text-[#800020]">Skills</h2>
             <div className="grid gap-6 md:grid-cols-3">
               {[
-                "React & Next.js",
-                "TypeScript",
-                "Node.js",
+                "C Programming",
                 "Python",
-                "UI/UX Design",
-                "Cloud Services",
+                "Embedded Systems",
+                "PCB Design",
+                "Soldering",
+                "Electronics Design",
               ].map((skill, index) => (
                 <div
                   key={skill}
@@ -164,14 +165,15 @@ export default function Home() {
                   <div className="p-6">
                     <h3 className="mb-2 text-xl font-semibold text-white">Project {project}</h3>
                     <p className="mb-4 text-zinc-400">
-                      A modern web application built with cutting-edge technology.
+                      An embedded systems project featuring custom PCB design and firmware
+                      development.
                     </p>
                     <div className="flex gap-2">
                       <span className="rounded-full bg-[#800020]/20 px-3 py-1 text-xs text-[#800020]">
-                        React
+                        C
                       </span>
                       <span className="rounded-full bg-[#800020]/20 px-3 py-1 text-xs text-[#800020]">
-                        TypeScript
+                        Embedded
                       </span>
                     </div>
                   </div>
