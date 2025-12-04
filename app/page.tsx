@@ -1,19 +1,53 @@
 "use client";
 
-import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        const next = prev + Math.floor(Math.random() * 15) + 5;
+        if (next >= 100) {
+          clearInterval(interval);
+          setTimeout(() => setLoading(false), 300);
+          return 100;
+        }
+        return next;
+      });
+    }, 200);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="min-h-screen bg-black text-white">
+      {loading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
+          <div className="pixel-card w-[90%] max-w-sm p-4 text-center text-xs">
+            <div className="mb-3 flex items-center justify-between border-b-4 border-white pb-2">
+              <span className="uppercase tracking-[0.25em]">/boot/raihan.exe</span>
+              <span>[ LOADING ]</span>
+            </div>
+            <p className="mb-3 text-gray-200">Initializing embedded systems portfolio...</p>
+            <div className="mb-2 border-2 border-white bg-black p-1">
+              <div className="h-4 bg-white" style={{ width: `${progress}%` }} />
+            </div>
+            <p className="text-[10px] text-gray-300">Progress: {progress}%</p>
+          </div>
+        </div>
+      )}
       {/* Top bar */}
       <header className="border-b-4 border-white bg-black px-4 py-3 shadow-[0_4px_0_0_#ffffff]">
         <div className="mx-auto flex max-w-5xl items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="h-4 w-4 bg-white" />
-            <span className="text-sm uppercase tracking-[0.25em]">RAIHAN.EXE</span>
+            <span className="text-sm uppercase tracking-[0.25em]">RAIHAN'S PORTFOLIO.EXE</span>
           </div>
           <nav className="hidden gap-6 text-xs uppercase tracking-[0.2em] md:flex">
-            <a href="#about" className="hover:underline">
+            <a href="/about" className="hover:underline">
               About
             </a>
             <a href="#projects" className="hover:underline">
