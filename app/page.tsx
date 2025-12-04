@@ -1,64 +1,229 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-[#0a0a0a] via-[#1a0a0a] to-[#0a0a0a] font-sans">
+      {/* Animated background gradient */}
+      <div
+        className="pointer-events-none fixed inset-0 opacity-30 transition-opacity duration-1000"
+        style={{
+          background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(128, 0, 32, 0.15), transparent 40%)`,
+        }}
+      />
+
+      {/* Grid pattern overlay */}
+      <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(rgba(128,0,32,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(128,0,32,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
+
+      {/* Navigation */}
+      <nav className="fixed top-0 z-50 w-full border-b border-maroon/20 bg-black/50 backdrop-blur-md">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+          <div className="text-xl font-bold text-[#800020]">Portfolio</div>
+          <div className="hidden gap-8 md:flex">
+            <a href="#about" className="text-zinc-300 transition-colors hover:text-[#800020]">
+              About
+            </a>
+            <a href="#projects" className="text-zinc-300 transition-colors hover:text-[#800020]">
+              Projects
+            </a>
+            <a href="#skills" className="text-zinc-300 transition-colors hover:text-[#800020]">
+              Skills
+            </a>
+            <a href="#contact" className="text-zinc-300 transition-colors hover:text-[#800020]">
+              Contact
+            </a>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      </nav>
+
+      <main className="relative z-10">
+        {/* Hero Section */}
+        <section className="flex min-h-screen items-center justify-center px-6 pt-20">
+          <div
+            className={`max-w-5xl text-center transition-all duration-1000 ${
+              isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+            <div className="mb-6 inline-block rounded-full border border-[#800020]/30 bg-[#800020]/10 px-4 py-2 text-sm text-[#800020] backdrop-blur-sm">
+              <span className="mr-2 inline-block h-2 w-2 animate-pulse rounded-full bg-[#800020]"></span>
+              Available for opportunities
+            </div>
+            <h1 className="mb-6 bg-gradient-to-r from-[#800020] via-[#a00028] to-[#800020] bg-clip-text text-6xl font-bold leading-tight text-transparent md:text-8xl">
+              Hi, I&apos;m Raihan
+            </h1>
+            <p className="mb-4 text-2xl font-light text-zinc-300 md:text-3xl">
+              Full Stack Developer
+            </p>
+            <p className="mx-auto mb-12 max-w-2xl text-lg text-zinc-400">
+              Crafting digital experiences with cutting-edge technology and innovative design.
+              Transforming ideas into reality through code.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a
+                href="#projects"
+                className="group relative overflow-hidden rounded-lg bg-gradient-to-r from-[#800020] to-[#a00028] px-8 py-4 font-semibold text-white transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(128,0,32,0.5)]"
+              >
+                <span className="relative z-10">View My Work</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#a00028] to-[#800020] opacity-0 transition-opacity group-hover:opacity-100"></div>
+              </a>
+              <a
+                href="#contact"
+                className="rounded-lg border border-[#800020]/50 bg-black/30 px-8 py-4 font-semibold text-[#800020] backdrop-blur-sm transition-all hover:border-[#800020] hover:bg-[#800020]/10"
+              >
+                Get In Touch
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* About Section */}
+        <section id="about" className="relative py-32 px-6">
+          <div className="mx-auto max-w-6xl">
+            <h2 className="mb-16 text-center text-5xl font-bold text-[#800020]">About Me</h2>
+            <div className="grid gap-12 md:grid-cols-2">
+              <div className="rounded-2xl border border-[#800020]/20 bg-black/40 p-8 backdrop-blur-sm transition-all hover:border-[#800020]/40 hover:shadow-[0_0_40px_rgba(128,0,32,0.2)]">
+                <h3 className="mb-4 text-2xl font-semibold text-white">Who I Am</h3>
+                <p className="leading-relaxed text-zinc-300">
+                  A passionate developer with a love for creating elegant solutions to complex
+                  problems. I specialize in building modern web applications that are both
+                  functional and beautiful.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-[#800020]/20 bg-black/40 p-8 backdrop-blur-sm transition-all hover:border-[#800020]/40 hover:shadow-[0_0_40px_rgba(128,0,32,0.2)]">
+                <h3 className="mb-4 text-2xl font-semibold text-white">What I Do</h3>
+                <p className="leading-relaxed text-zinc-300">
+                  I develop full-stack applications using the latest technologies, focusing on
+                  performance, accessibility, and user experience. Every project is an opportunity
+                  to learn and grow.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Skills Section */}
+        <section id="skills" className="relative py-32 px-6">
+          <div className="mx-auto max-w-6xl">
+            <h2 className="mb-16 text-center text-5xl font-bold text-[#800020]">Skills</h2>
+            <div className="grid gap-6 md:grid-cols-3">
+              {[
+                "React & Next.js",
+                "TypeScript",
+                "Node.js",
+                "Python",
+                "UI/UX Design",
+                "Cloud Services",
+              ].map((skill, index) => (
+                <div
+                  key={skill}
+                  className="group relative overflow-hidden rounded-xl border border-[#800020]/20 bg-gradient-to-br from-black/60 to-black/40 p-6 backdrop-blur-sm transition-all hover:border-[#800020]/50 hover:shadow-[0_0_30px_rgba(128,0,32,0.3)]"
+                  style={{
+                    animationDelay: `${index * 100}ms`,
+                  }}
+                >
+                  <div className="relative z-10">
+                    <h3 className="mb-2 text-xl font-semibold text-white">{skill}</h3>
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-black/50">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-[#800020] to-[#a00028] transition-all duration-1000 group-hover:w-full"
+                        style={{ width: `${75 + Math.random() * 20}%` }}
+                      />
+                    </div>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#800020]/0 to-[#800020]/10 opacity-0 transition-opacity group-hover:opacity-100"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Projects Section */}
+        <section id="projects" className="relative py-32 px-6">
+          <div className="mx-auto max-w-6xl">
+            <h2 className="mb-16 text-center text-5xl font-bold text-[#800020]">Projects</h2>
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {[1, 2, 3].map((project) => (
+                <div
+                  key={project}
+                  className="group relative overflow-hidden rounded-2xl border border-[#800020]/20 bg-black/40 backdrop-blur-sm transition-all hover:border-[#800020]/50 hover:shadow-[0_0_40px_rgba(128,0,32,0.3)]"
+                >
+                  <div className="aspect-video bg-gradient-to-br from-[#800020]/20 to-[#a00028]/20"></div>
+                  <div className="p-6">
+                    <h3 className="mb-2 text-xl font-semibold text-white">Project {project}</h3>
+                    <p className="mb-4 text-zinc-400">
+                      A modern web application built with cutting-edge technology.
+                    </p>
+                    <div className="flex gap-2">
+                      <span className="rounded-full bg-[#800020]/20 px-3 py-1 text-xs text-[#800020]">
+                        React
+                      </span>
+                      <span className="rounded-full bg-[#800020]/20 px-3 py-1 text-xs text-[#800020]">
+                        TypeScript
+                      </span>
+                    </div>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact" className="relative py-32 px-6">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="mb-8 text-5xl font-bold text-[#800020]">Get In Touch</h2>
+            <p className="mb-12 text-lg text-zinc-300">
+              I&apos;m always open to discussing new projects, creative ideas, or opportunities to
+              be part of your visions.
+            </p>
+            <div className="flex flex-wrap justify-center gap-6">
+              <a
+                href="mailto:your.email@example.com"
+                className="group flex items-center gap-3 rounded-lg border border-[#800020]/50 bg-black/30 px-6 py-3 text-[#800020] backdrop-blur-sm transition-all hover:border-[#800020] hover:bg-[#800020]/10"
+              >
+                <span>Email</span>
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </a>
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 rounded-lg border border-[#800020]/50 bg-black/30 px-6 py-3 text-[#800020] backdrop-blur-sm transition-all hover:border-[#800020] hover:bg-[#800020]/10"
+              >
+                <span>GitHub</span>
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 rounded-lg border border-[#800020]/50 bg-black/30 px-6 py-3 text-[#800020] backdrop-blur-sm transition-all hover:border-[#800020] hover:bg-[#800020]/10"
+              >
+                <span>LinkedIn</span>
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="border-t border-[#800020]/20 py-8 text-center text-zinc-400">
+          <p>© {new Date().getFullYear()} Raihan. All rights reserved.</p>
+        </footer>
       </main>
     </div>
   );
